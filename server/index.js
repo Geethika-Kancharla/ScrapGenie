@@ -6,14 +6,16 @@ const app = express();
 app.use(cors());
 
 app.get('/', (req, res) => {
- res.json({
-    "name":"asdf"
- })
+    res.json({
+        "author": "asdf",
+        "title": "asdf",
+        "content": "ggsfdgdfgfdfg"
+    })
 });
 
-const PORT=5000;
+const PORT = 5000;
 
-app.listen(PORT,()=>{
+app.listen(PORT, () => {
     console.log("Server running ");
 })
 

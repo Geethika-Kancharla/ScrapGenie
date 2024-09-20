@@ -6,11 +6,10 @@ const App = () => {
 
   const [blogs, setBlogs] = useState()
 
-  const [formData, setFormData] = useState(
-    "author",
-    "title",
-    "content"
-  )
+  const [author, setAuthor] = useState();
+  const [title, setTitle] = useState();
+  const [content, setContent] = useState();
+
 
   useEffect(() => {
     get();
@@ -26,14 +25,12 @@ const App = () => {
     console.log(blogs);
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = async (author, title, content) => {
+    const response = await axios.post("http://localhost:5000/", { author, title, content });
+
     console.log("Submitted");
   }
 
-  const handleInputChange = (e) => {
-    const { author, title, content } = e.target.name;
-    setFormData(e.target.value);
-  }
 
 
   return (
@@ -45,11 +42,11 @@ const App = () => {
       <div className='flex flex-col'>
         <h2 className='font-bold text-xl m-8'>Write your own blog here</h2>
         <form onSubmit={handleSubmit} className='p-3 border border-black flex flex-col space-y-5'>
-          <input type='text' name='author' value={formData.author} handleChange={handleInputChange} placeholder='Enter author name' className=' p-1 border border-black w-fit'></input>
-          <input type='text' name='title' value={formData.title} handleChange={handleInputChange} placeholder='Enter title' className='p-1 border border-black w-fit'></input>
+          <input type='text' name='author' value={author} handleChange={(e) => setAuthor(e.target.value)} placeholder='Enter author name' className=' p-1 border border-black w-fit'></input>
+          <input type='text' name='title' value={title} handleChange={(e) => setTitle(e.target.value)} placeholder='Enter title' className='p-1 border border-black w-fit'></input>
 
-          <textarea placeholder='Enter content' name='content' handleChange={handleInputChange} value={formData.content} className='p-1 border border-black w-fit'></textarea>
-
+          <textarea placeholder='Enter content' name='content' handleChange={(e) => setContent(e.target.value)} value={content} className='p-1 border border-black w-fit'></textarea>
+          <button type='submit' className='bg-green-500 w-fit rounded-xl p-2'>Submit</button>
 
         </form>
       </div>
