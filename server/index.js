@@ -13,6 +13,14 @@ app.get('/', (req, res) => {
     })
 });
 
+
+app.post('/', (req, res) => {
+    const data = req.body;
+    console.log(data);
+});
+
+
+
 const PORT = 5000;
 
 app.listen(PORT, () => {

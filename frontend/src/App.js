@@ -26,12 +26,12 @@ const App = () => {
   }
 
   const handleSubmit = async (author, title, content) => {
-    const response = await axios.post("http://localhost:5000/", { author, title, content });
+    const response = await axios.post("http://localhost:5000/", (author, title, content));
+    const data = response.data;
+    console.log(data);
 
     console.log("Submitted");
   }
-
-
 
   return (
     <div className=' flex flex-col items-center min-h-screen'>
@@ -46,7 +46,7 @@ const App = () => {
           <input type='text' name='title' value={title} handleChange={(e) => setTitle(e.target.value)} placeholder='Enter title' className='p-1 border border-black w-fit'></input>
 
           <textarea placeholder='Enter content' name='content' handleChange={(e) => setContent(e.target.value)} value={content} className='p-1 border border-black w-fit'></textarea>
-          <button type='submit' className='bg-green-500 w-fit rounded-xl p-2'>Submit</button>
+          <button type='submit' className='bg-green-500 w-fit rounded-xl p-2 text-white'>Submit</button>
 
         </form>
       </div>
